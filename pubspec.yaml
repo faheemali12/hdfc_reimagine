@@ -41,8 +41,9 @@ dependencies:
   carousel_slider: ^5.0.0
   flutter_advanced_switch: ^3.1.0
   mobile_scanner: ^3.4.1
-  url_launcher: ^6.1.11
   permission_handler: ^11.0.1
+  flutter_credit_card: ^4.0.1
+  shared_preferences: ^2.0.15
 
 
 dev_dependencies:

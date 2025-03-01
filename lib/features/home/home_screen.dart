@@ -1,8 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hdfc_reimagine/features/Profile/profile_screen.dart';
+import 'package:hdfc_reimagine/features/auth/login/login_screen.dart';
 import 'package:hdfc_reimagine/features/home/bill_payments/bill_payments_screen.dart';
 import 'package:hdfc_reimagine/features/home/money_transfer/money_transfer_screen.dart';
+import 'package:hdfc_reimagine/features/settings/settings.dart';
 
 import '../../utills/colors.dart';
 
@@ -18,6 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
     "assets/images/offerbanner.jpg",
     "assets/images/offerbanner2.jpg",
   ];
+
+  bool _isBalanceVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -46,16 +51,28 @@ class _HomeScreenState extends State<HomeScreen> {
             size: 25,
           ),
           const SizedBox(width: 20),
-          Icon(
-            Icons.settings,
-            color: AppColors.darkGrey,
-            size: 25,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingsScreen()));
+            },
+            child: Icon(
+              Icons.settings,
+              color: AppColors.darkGrey,
+              size: 25,
+            ),
           ),
           const SizedBox(width: 20),
-          Icon(
-            Icons.exit_to_app,
-            color: AppColors.darkGrey,
-            size: 25,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()));
+            },
+            child: Icon(
+              Icons.exit_to_app,
+              color: AppColors.darkGrey,
+              size: 25,
+            ),
           ),
           const SizedBox(width: 20),
         ],
@@ -142,20 +159,28 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "RS.7,500",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 23,
-                      fontWeight: FontWeight.w600),
-                ),
-                CircleAvatar(
-                  minRadius: 24,
-                  backgroundColor: AppColors.secondaryBlue,
-                  child: const Icon(
-                    CupertinoIcons.eye_slash_fill,
+                Text(
+                  _isBalanceVisible ? "RS.7,500" : "****",
+                  style: const TextStyle(
                     color: Colors.white,
-                    size: 23,
+                    fontSize: 23,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _isBalanceVisible = !_isBalanceVisible;
+                    });
+                  },
+                  child: CircleAvatar(
+                    minRadius: 24,
+                    backgroundColor: AppColors.secondaryBlue,
+                    child: const Icon(
+                      CupertinoIcons.eye_slash_fill,
+                      color: Colors.white,
+                      size: 23,
+                    ),
                   ),
                 ),
               ],
@@ -342,7 +367,6 @@ class _HomeScreenState extends State<HomeScreen> {
         enlargeFactor: 0.3,
         scrollDirection: Axis.horizontal,
         animateToClosest: true,
-
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hdfc_reimagine/features/dashborad/dashboard_screen.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:url_launcher/url_launcher.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
 class QrCodeScanner extends StatefulWidget {
@@ -41,7 +41,8 @@ class _QrCodeScannerState extends State<QrCodeScanner> {
             left: 20,
             child: IconButton(
               icon: Icon(Icons.arrow_back, color: Colors.white, size: 30),
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => DashboardScreen())),
             ),
           ),
           Positioned(
@@ -56,7 +57,10 @@ class _QrCodeScannerState extends State<QrCodeScanner> {
             bottom: 150,
             child: Text(
               "Align the QR code inside the frame",
-              style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold),
             ),
           ),
           _buildScannerFrame(),
@@ -79,13 +83,13 @@ class _QrCodeScannerState extends State<QrCodeScanner> {
   void _handleScannedData(String data) async {
     print("Scanned QR Code: $data");
 
-    if (data.startsWith("http")) {
-      await launchUrl(Uri.parse(data), mode: LaunchMode.externalApplication);
-    } else if (data.startsWith("upi://pay")) {
-      await launchUrl(Uri.parse(data), mode: LaunchMode.externalApplication);
-    } else {
-      _showResultDialog(data);
-    }
+    // if (data.startsWith("http")) {
+    //   await launchUrl(Uri.parse(data), mode: LaunchMode.externalApplication);
+    // } else if (data.startsWith("upi://pay")) {
+    //   await launchUrl(Uri.parse(data), mode: LaunchMode.externalApplication);
+    // } else {
+    //   _showResultDialog(data);
+    // }
     setState(() => isScanning = true);
   }
 

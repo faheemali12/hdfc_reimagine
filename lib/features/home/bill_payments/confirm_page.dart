@@ -61,7 +61,6 @@ class _ConfirmPageState extends State<ConfirmPage> {
       },
     );
 
-    // Close the dialog after 2 seconds and navigate with fade transition
     Future.delayed(Duration(seconds: 2), () {
       Navigator.pop(context); // Close Dialog
       Navigator.pushAndRemoveUntil(

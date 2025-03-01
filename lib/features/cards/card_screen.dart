@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hdfc_reimagine/features/cards/add%20card/add_card_screen.dart';
 import 'package:hdfc_reimagine/features/cards/credit_card/creditcard_screen.dart';
 import '../../utills/colors.dart';
 
@@ -65,12 +66,18 @@ class _CardScreenState extends State<CardScreen> {
             fontWeight: FontWeight.w700,
           ),
         ),
-        Text(
-          "Add Card",
-          style: TextStyle(
-            color: AppColors.secondaryBlue,
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
+        InkWell(
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AddCardScreen()));
+          },
+          child: Text(
+            "Add Card",
+            style: TextStyle(
+              color: AppColors.secondaryBlue,
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         )
       ],
