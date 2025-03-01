@@ -160,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  _isBalanceVisible ? "RS.7,500" : "****",
+                  _isBalanceVisible ? "RS.7,50,000" : "******",
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 23,

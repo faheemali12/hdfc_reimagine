@@ -26,14 +26,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 300), // Smooth transition
+        duration: const Duration(milliseconds: 300),
         child: screens[currentIndex],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Stack(
         alignment: Alignment.center,
         children: [
-          // Glowing background
           Container(
             width: 65,
             height: 65,
@@ -41,9 +40,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  Colors.blue.shade900.withOpacity(0.8), // Dark blue
-                  Colors.blueAccent.shade700.withOpacity(0.5), // Light glow
-                  Colors.blue.withOpacity(0.1), // Fading effect
+                  Colors.blue.shade900.withOpacity(0.8),
+                  Colors.blueAccent.shade700.withOpacity(0.5),
+                  Colors.blue.withOpacity(0.1),
                 ],
                 stops: const [0.3, 0.6, 1.0],
                 radius: 1.0,
@@ -72,7 +71,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
               },
               shape: const CircleBorder(),
               backgroundColor: Colors.blue.shade900,
-              // Dark blue button
               elevation: 5,
               child: const Icon(Icons.qr_code_scanner,
                   color: Colors.white, size: 28),

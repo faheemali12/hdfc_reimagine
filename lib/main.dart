@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       builder: (_, child) {
         return const MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'HDFC REIMAGINE',
+          title: 'HDFC ',
           home: SplashScreen(),
           initialRoute: AppRoutes.splash,
           onGenerateRoute: AppRoutes.generateRoute,
