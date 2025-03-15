@@ -1,11 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hdfc_reimagine/features/Profile/profile_screen.dart';
 import 'package:hdfc_reimagine/features/auth/login/login_screen.dart';
 import 'package:hdfc_reimagine/features/home/bill_payments/bill_payments_screen.dart';
 import 'package:hdfc_reimagine/features/home/money_transfer/money_transfer_screen.dart';
 import 'package:hdfc_reimagine/features/settings/settings.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../utills/colors.dart';
 
@@ -23,26 +23,35 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   bool _isBalanceVisible = true;
+  final TextEditingController _fullNameController = TextEditingController();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: Padding(
           padding: const EdgeInsets.only(left: 10.0),
-          child: CircleAvatar(
-            backgroundColor: Colors.grey.shade200,
-            child: const Icon(
-              Icons.person,
-              size: 30,
-              color: Colors.blue,
+          child: GestureDetector(
+            onTap: () {
+              _scaffoldKey.currentState?.openDrawer();
+            },
+            child: CircleAvatar(
+              backgroundColor: Colors.grey.shade200,
+              child: const Icon(
+                Icons.person,
+                size: 30,
+                color: Colors.blue,
+              ),
             ),
           ),
         ),
-        title: const Text(
-          "Hi John!",
-          style: TextStyle(color: AppColors.darkGrey, fontSize: 20),
+        title: Text(
+          _fullNameController.text,
+          style: const TextStyle(color: AppColors.darkGrey, fontSize: 20),
         ),
         actions: [
           Icon(
@@ -77,10 +86,89 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(width: 20),
         ],
       ),
+      drawer: _buildDrawer(),
       body: buildBody(),
       backgroundColor: Colors.white,
     );
   }
+  Widget _buildDrawer() {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: AppColors.primaryBlue,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 30,
+                  child: Icon(
+                    Icons.person,
+                    color: AppColors.primaryBlue,
+                    size: 40,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'John', // Display the username in the drawer header
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.home),
+            title: Text('Home'),
+            onTap: () {
+              // Close the drawer and navigate to home
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.account_circle),
+            title: Text('Profile'),
+            onTap: () {
+              // Close the drawer and navigate to the profile screen
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text('Settings'),
+            onTap: () {
+              // Close the drawer and navigate to settings
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SettingsScreen()),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.exit_to_app),
+            title: Text('Logout'),
+            onTap: () {
+              // Handle logout
+              Supabase.instance.client.auth.signOut();
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => LoginScreen()),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
 
   Widget buildBody() {
     return Padding(
@@ -110,6 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
 
   Widget _searchField() {
     return Padding(

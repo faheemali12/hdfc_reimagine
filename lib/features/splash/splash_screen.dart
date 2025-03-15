@@ -16,6 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.pushNamed(context, AppRoutes.login);
     });
   }
+  @override
   Widget build(BuildContext context) {
 
     return Scaffold(

@@ -43,6 +43,7 @@ dependencies:
   mobile_scanner: ^3.4.1
   permission_handler: ^11.0.1
   flutter_credit_card: ^4.0.1
+  supabase_flutter: ^2.8.4
 
 dev_dependencies:
   flutter_test:

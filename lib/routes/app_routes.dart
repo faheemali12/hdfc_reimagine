@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hdfc_reimagine/features/auth/login/login_screen.dart';
+import 'package:hdfc_reimagine/features/auth/signup/signup_page.dart';
 import 'package:hdfc_reimagine/features/dashborad/dashboard_screen.dart';
 import 'package:hdfc_reimagine/features/splash/splash_screen.dart';
 
 class AppRoutes {
   static const String splash = '/splash';
+  static const String signup = '/signup';
   static const String login = '/login';
   static const String dashboard = '/dashboard';
 
@@ -12,6 +14,8 @@ class AppRoutes {
     switch (settings.name) {
       case splash:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
+      case signup:
+        return MaterialPageRoute(builder: (_) => SignupPage());
       case login:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case dashboard:
