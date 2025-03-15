@@ -128,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.pushNamed(context, AppRoutes.dashboard);
       },
       child: Icon(
-        Icons.fingerprint_outlined,
+        Icons.fingerprint,
         size: 80,
         color: AppColors.darkGrey,
       ),
