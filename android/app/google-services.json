@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "690420571600",
+    "project_id": "practice-5608e",
+    "storage_bucket": "practice-5608e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:690420571600:android:663df8211e2a068d746dd5",
+        "android_client_info": {
+          "package_name": "com.hdfc.reimagine.hdfc_reimagine"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDx2_43Hy4dhhm1nK9yzmWCt0yHDjlgo5s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

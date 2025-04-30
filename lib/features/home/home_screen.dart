@@ -5,7 +5,6 @@ import 'package:hdfc_reimagine/features/auth/login/login_screen.dart';
 import 'package:hdfc_reimagine/features/home/bill_payments/bill_payments_screen.dart';
 import 'package:hdfc_reimagine/features/home/money_transfer/money_transfer_screen.dart';
 import 'package:hdfc_reimagine/features/settings/settings.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../utills/colors.dart';
 
@@ -157,7 +156,6 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Text('Logout'),
             onTap: () {
               // Handle logout
-              Supabase.instance.client.auth.signOut();
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => LoginScreen()),
